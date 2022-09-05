@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dist/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Profile</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-menu">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary shadow-lg">
+          <img
+            class="profile-picture mx-2 rounded shadow-lg"
+            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
+            alt="profile picture"
+          />
+          <h1><a class="navbar-brand" href="home.html">SosialMeets</a></h1>
+          <button
+            class="navbar-toggler d-lg-none mx-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse ms-2" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="home.html"
+                  >Feed <span class="visually-hidden">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link current-page" href="#">Profile</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Menu</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                  <a class="dropdown-item" href="login.html">Log Out</a>
+                </div>
+              </li>
+            </ul>
+            <form class="d-flex my-2 my-lg-0">
+              <input
+                class="form-control me-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0 primary-button mx-2"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container py-5 px-4">
+      <div class="col-md-5 mx-auto">
+        <!-- Profile widget -->
+        <div class="rounded overflow-hidden">
+          <div class="px-4 pt-0 pb-4 cover">
+            <div class="media align-items-end profile-head">
+              <div class="profile mr-3 mt-5">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(24).webp"
+                  alt="profile picture"
+                  width="200"
+                  class="rounded mb-2"
+                />
+                <div>
+                  <h2 class="mt-0 mb-0">Gonzalo Longe</h2>
+                  <p class="small mb-4">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Age 34
+                  </p>
+                </div>
+                <p>
+                  Bio: Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Ducimus iste nam voluptate earum provident odio necessitatibus
+                  eaque, illo magnam velit maxime atque eveniet quaerat ad.
+                </p>
+                <h3>New Post</h3>
+                <textarea
+                  class="mt-4 form-control"
+                  placeholder="Text..."
+                ></textarea>
+                <button type="button" class="btn btn-primary btn-sm mt-3">
+                  Publish
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 d-flex justify-content-end text-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <h5 class="font-weight-bold mb-0 d-block">232</h5>
+                <small class="text-muted">
+                  <i class="fas fa-image mr-1"></i>Photos</small
+                >
+              </li>
+              <li class="list-inline-item">
+                <h5 class="font-weight-bold mb-0 d-block">321</h5>
+                <small class="text-muted">
+                  <i class="fas fa-user mr-1"></i>Followers</small
+                >
+              </li>
+              <li class="list-inline-item">
+                <h5 class="font-weight-bold mb-0 d-block">487</h5>
+                <small class="text-muted">
+                  <i class="fas fa-user mr-1"></i>Following</small
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="py-4 px-4 seperator-line mt-4">
+            <div
+              class="d-flex align-items-center justify-content-between mb-3 mt-4"
+            >
+              <h4 class="mb-0">Your Post</h4>
+              <a href="#" class="btn btn-link text-muted">Show all</a>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 mb-3 pr-lg-1">
+                <img
+                  src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                  alt=""
+                  class="img-fluid rounded shadow-sm"
+                />
+              </div>
+              <div class="col-lg-6 mb-3 pl-lg-1">
+                <img
+                  src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                  alt=""
+                  class="img-fluid rounded shadow-sm"
+                />
+              </div>
+              <div class="col-lg-6 pr-lg-1 mb-3">
+                <img
+                  src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                  alt=""
+                  class="img-fluid rounded shadow-sm"
+                />
+              </div>
+              <div class="col-lg-6 pl-lg-1">
+                <img
+                  src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+                  alt=""
+                  class="img-fluid rounded shadow-sm"
+                />
+              </div>
+            </div>
+            <div class="seperator-line mt-5">
+              <div
+                class="d-flex align-items-center justify-content-between mb-3 mt-4"
+              >
+                <h4 class="mb-0 mt-4 mb-2">Your Followers</h4>
+              </div>
+            </div>
+            <div>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h5 class="mb-0">
+                  <img
+                    class="me-2 profile-picture-followers rounded"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(7).webp"
+                    alt=""
+                  />
+                  Profile name
+                </h5>
+                <a href="#" class="btn btn-link text-muted">Remove</a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h5 class="mb-0">
+                  <img
+                    class="me-2 profile-picture-followers rounded"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+                    alt=""
+                  />
+                  Profile name
+                </h5>
+                <a href="#" class="btn btn-link text-muted">Remove</a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h5 class="mb-0">
+                  <img
+                    class="me-2 profile-picture-followers rounded"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(3).webp"
+                    alt=""
+                  />
+                  Profile name
+                </h5>
+                <a href="#" class="btn btn-link text-muted">Remove</a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h5 class="mb-0">
+                  <img
+                    class="me-2 profile-picture-followers rounded"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+                    alt=""
+                  />
+                  Profile name
+                </h5>
+                <a href="#" class="btn btn-link text-muted">Remove</a>
+              </div>
+            </div>
+            <div>
+              <div
+                class="d-flex align-items-center justify-content-between mb-3"
+              >
+                <h5 class="mb-0">
+                  <img
+                    class="me-2 profile-picture-followers rounded"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(6).webp"
+                    alt=""
+                  />
+                  Profile name
+                </h5>
+                <a href="#" class="btn btn-link text-muted">Remove</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="text-center mt-5 bg-primary py-4">
+        Contact
+        <p>gonlonge@icloud.com</p>
+      </div>
+    </footer>
+  </body>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</html>

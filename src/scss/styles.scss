@@ -1,0 +1,91 @@
+// Variables are defined here:
+$primary: #e7044c;
+
+$secondary: #f5f5f5;
+
+$pointer-hover: #d3aeba;
+
+$tertiary: #e6e3e3;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/functions.scss";
+
+/* fonts */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "montserrat" serif, Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+p,
+a {
+  font-family: "Roboto" serif, Arial, Helvetica, sans-serif;
+}
+
+/* body */
+
+.main-container {
+  max-width: 700px;
+}
+
+.profile-picture {
+  max-width: 10%;
+}
+
+.profile-picture-followers {
+  max-width: 14%;
+}
+
+.current-page {
+  text-decoration: underline;
+}
+
+.seperator-line {
+  border-top: 1px solid $tertiary;
+}
+
+/* images */
+
+.responsive-img {
+  width: 25%;
+  height: 25%;
+}
+
+/* Buttons */
+
+.primary-button {
+  background: $secondary;
+  &:hover {
+    background-color: $pointer-hover;
+  }
+}
+
+.secondary-button {
+  background: $primary;
+  &:hover {
+    background-color: $pointer-hover;
+  }
+}
+
+a {
+  text-decoration: $secondary;
+  &:hover {
+    text-decoration: $pointer-hover;
+  }
+}
+
+.btn-outline-success {
+  --bs-btn-color: $secondary;
+  --bs-btn-border-color: $secondary;
+}
+
+/* log in*/
+.main-background {
+  background-color: $primary;
+}
+
