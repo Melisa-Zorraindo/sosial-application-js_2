@@ -1,31 +1,63 @@
-// const terminatorJSON =
-//   '{"name": "t800", "skin": "humanskin", "wepon": true, "ammo": 100}';
+import { postAuthLogin, postAuthRegister, getSocialPosts, isLoggedIn } from './noroff-api-helper.mjs'
 
-// const terminator = JSON.parse(terminatorJSON);
-// console.log(terminator);
+// ("gonzalo01@stud.noroff.no", "Gonzalo123")
 
-// localStorage.setItem("name");
 
-// localStorage.setItem("firstName", "ole");
-// localStorage.setItem("lastName", "Normann");
+/**
+ * Listen to sign in button
+ */
+/*
+const button = document.getElementById('sign-in-button')
+button.addEventListener('click', async () => {
+    
+});
+*/
 
-// localStorage.removeItem("firstName");
+/**
+ * Listen to Submit form
+ */
+const form = document.querySelector("#loginForm");
+if (form) {
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault()
+        const form = event.target;
+        const formData = new FormData(form);
+        const profile = Object.fromEntries(formData.entries())
+    
+        const email = profile["email"];
+        const password = profile["password"];
+        
+        if (email && password) {
+            const result = await postAuthLogin(email, password)
+            if (result.statusCode === 200) {
+                console.log(result.json);
+                console.log("Success! User has been logged in.");
+            } else {
+                console.error("Something went wrong");
+            }
+            // TODO: do proper navigation and set login state
+        }
+    });
+}
 
-// const lastName = localStorage.getItem("lastName");
+/*
+async function registerUser()  {
+    const result = await postAuthRegister("Gonzalo01", "gonzalo01@stud.noroff.no", "Gonzalo123");
+    // TODO: Sign in and then save the result.
+    console.table(result)
+    if (result.statusCode === 201) {
+        console.log("Success! User has been created.")
+    } else {
+        console.error("Something went wrong")
+    }
+}
 
-// console.log(lastName);
-
-localStorage.clear();
-
-const person = {
-  fistName: "ole",
-  lastName: "normann",
-  isadmin: "false",
-};
-
-const jsonPerson = JSON.stringify(person);
-
-localStorage.setItem("person", jsonPerson);
-
-const personRetrived = localStorage.getItem("person");
-console.log(personRetrived);
+async function getPosts() {
+    const result = getSocialPosts();
+    console.table(result);
+    if (result.statusCode === 200) {
+        console.log("Success! User has been created.")
+    } else {
+        console.error("Something went wrong")
+    }
+}*/
