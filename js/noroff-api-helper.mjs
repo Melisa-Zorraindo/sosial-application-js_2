@@ -7,7 +7,8 @@
 const API_BASE_URL = "https://nf-api.onrender.com";
 const API_AUTH_REGISTER = "/api/v1/social/auth/register";
 const API_AUTH_LOGIN = "/api/v1/social/auth/login";
-const API_SOCIAL_POSTS = "/api/v1/social/posts";
+const API_SOCIAL_POSTS = "/api/v1/social/posts?sort=created&sortOrder=desc";
+const API_SOCIAL_POST = "/api/v1/social/posts/"
 
 const userKey = "noroff-user-key"
 
@@ -31,6 +32,8 @@ function stringify(data) {
 
 function isLoggedIn() {
     const res = load(userKey);
+    console.log("load:");
+    console.table(res);
     const token = res["accessToken"];
     return token !== null 
 }
@@ -52,6 +55,27 @@ async function noroffPOST(url, body) {
             headers: defaultHeaders,
             body: data,
         };
+        const apiResponse = await fetch(API_BASE_URL + url, request);
+        return apiResponse
+    } catch (error) {
+        console.error(error);
+    }
+    return null;
+}
+
+async function noroffGET(url) {
+    const headers = defaultHeaders
+    const token = load(userKey);
+    console.log(token.accessToken);
+    if (token) {
+        headers["Authorization"] = `Bearer ${token.accessToken}`
+    }
+    try {
+        const request = {
+            method: "GET",
+            headers: headers
+        };
+        console.table(request);
         const apiResponse = await fetch(API_BASE_URL + url, request);
         return apiResponse
     } catch (error) {
@@ -135,28 +159,27 @@ async function postAuthLogin(email, password) {
  * @returns http response and json data
  */
 async function getSocialPosts() {
-    try {
-        const token = load("accessToken");
-        const headers = defaultHeaders
-        headers["Authorization"] = `Bearer ${token}`
-        const getData = {
-            method: "GET",
-            headers: headers,
-        };
-        const apiResponse = await fetch(API_SOCIAL_POSTS, getData);
-        const json = await apiResponse.json();
-        return {
-            json: json,
-            statusCode: apiResponse.status
-        };
-    } catch (error) {
-        console.error(error);
-    }
+    const apiResponse = await noroffGET(API_SOCIAL_POSTS);
+    const json = await apiResponse.json();
+    return {
+        json: json,
+        statusCode: apiResponse.status
+    };
+}
+
+async function getSocialPost(id) {
+    const apiResponse = await noroffGET(API_SOCIAL_POST + id);
+    const json = await apiResponse.json();
+    return {
+        json: json,
+        statusCode: apiResponse.status
+    };
 }
 
 export {
     postAuthLogin,
     postAuthRegister,
     getSocialPosts,
+    getSocialPost,
     isLoggedIn
 };

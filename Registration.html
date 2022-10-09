@@ -9,10 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Document</title>
+      rel="stylesheet"/>
+    <title>Registration</title>
   </head>
   <body>
     <section class="vh-100 gradient-custom">
@@ -25,58 +23,49 @@
             >
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Sign Up</h3>
-                <form>
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          id="email"
-                          class="form-control form-control-lg email"
-                          aria-label="email"
-                          required
-                        />
-                        <label class="form-label" for="email">Email</label>
-                      </div>
+                <form id="registerForm">
+                  <div class="container-md custom-w">
+                    <div class="input-group my-3">
+                      <input
+                        id="email"
+                        aria-label="Only @(stud.)noroff.no domains are allowed to login."
+                        class="form-control py-3" 
+                        type="email" 
+                        name="email" 
+                        required 
+                        pattern="^[\w\-.]+@(stud.)?noroff.no$" 
+                        placeholder="email (@noroff.no)"
+                      />
                     </div>
-
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          id="username"
-                          class="form-control form-control-lg username"
-                          aria-label="username"
-                          required
-                        />
-                        <label class="form-label" for="username"
-                          >User Name</label
-                        >
-                      </div>
+                    <div class="input-group my-3">
+                      <input
+                        id="name"
+                        aria-label="Only @(stud.)noroff.no domains are allowed to login."
+                        class="form-control py-3" 
+                        type="text" 
+                        name="name" 
+                        required 
+                        pattern="^[\w]+$" 
+                        placeholder="username"
+                      />
                     </div>
-
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input
-                          type="text"
-                          id="password"
-                          class="form-control form-control-lg password"
-                          aria-label="password"
-                          required
-                        />
-                        <label class="form-label" for="password"
-                          >Password</label
-                        >
-                      </div>
+                    <div class="input-group my-1">
+                      <input
+                        type="password"
+                        class="form-control py-3"
+                        id="password"
+                        placeholder="password"
+                        aria-label="password"
+                        name="password" 
+                        required minlength="8"
+                      />
                     </div>
-                  </div>
-
-                  <div id="register-user-button" class="mt-4 pt-2">
-                    <input
-                      class="btn btn-primary btn-lg"
-                      type="submit"
-                      value="Submit"
-                    />
+                    
+                    <div class="d-grid my-5">
+                      <button id="sign-in-button" class="btn btn-primary">
+                        Sign Up
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -85,9 +74,7 @@
         </div>
       </div>
     </section>
+    <script type="module" src="/js/pages/signin.mjs"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script type="module" src="/js/main.mjs"></script>
-    <script type="module" src="/js/noroff-api-helper.mjs"></script>
-    <script type="module" src="/js/storage-helper.mjs"></script>
   </body>
 </html>

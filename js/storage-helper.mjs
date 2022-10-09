@@ -5,6 +5,8 @@
  * @param {string} value – object data to store 
  */
 function save(key, value) {
+    console.log("Storing:")
+    console.table(value);
     localStorage.setItem(key, JSON.stringify(value))
 }
 
@@ -14,8 +16,10 @@ function save(key, value) {
  * @returns {any} stored object data
  */
 function load(key) {
-    const value = localStorage.getItem(key);
-    return JSON.parse(value);  
+    const value = JSON.parse(localStorage.getItem(key));
+    console.log("Getting:")
+    console.table(value);
+    return value;  
 } 
 
 /**
