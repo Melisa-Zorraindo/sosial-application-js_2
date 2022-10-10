@@ -18,7 +18,7 @@ if (registerForm) {
             if (result.statusCode === 201) {
                 console.log(result.json);
                 console.log("Success! User has been registered at Noroff.");
-                // TODO: do proper navigation and set login state
+                window.location.href = "/index.html";
                 return;
             }
             if (result.statusCode === 401) {

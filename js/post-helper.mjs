@@ -2,7 +2,7 @@
 // Improve the hr line (make class?)
 function makePost(post) {
     const html = 
-        `<div class="postContainer" onclick="openPost(${post.id})">
+        `<div class="postContainer">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <div class="p-3 mt-4">
@@ -24,7 +24,13 @@ function makePost(post) {
                                 <textarea class="mt-4 form-control" placeholder="Add a comment..."></textarea>                  
                             <div>
                                 <button type="button" class="btn btn-primary btn-sm mt-3">
-                                Publish
+                                Comment
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="editPost(${post.id})">
+                                Edit
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="deletePost(${post.id})">
+                                Delete
                                 </button>
                             </div>
                         </div>

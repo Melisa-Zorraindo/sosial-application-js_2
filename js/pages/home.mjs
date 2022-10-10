@@ -1,4 +1,4 @@
-import { getSocialPosts, isLoggedIn } from '../noroff-api-helper.mjs'
+import { getSocialPosts, postCreateSocialpost, isLoggedIn, deleteSocialPost } from '../noroff-api-helper.mjs'
 import { makePost } from '../post-helper.mjs';
 
 // Home:
@@ -47,6 +47,7 @@ function insertPosts(posts, filter, search) {
     container.innerHTML += filteredPosts;
 }
 
+// Filters
 const lastHourFilter = document.getElementById('filterLastHour');
 const todayFilter = document.getElementById('filterToday');
 const allPostsFilter = document.getElementById('filterAllPosts');
@@ -74,6 +75,7 @@ allPostsFilter.addEventListener("click", function() {
     refreshPosts();
 });
 
+// Search
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 
@@ -85,8 +87,54 @@ searchButton.addEventListener("click", function() {
 
 getAllPosts(currentFilter, currentSearch);
 
+// Navigate to single post
 function openPost(id) {
     window.location.href = "/post.html?id=" + id;
 }
-
 window.openPost = openPost
+
+// Publish post:
+const publishPost = document.getElementById('publishPost');
+const postTitle = document.getElementById('postTitle');
+const postBody = document.getElementById('postBody');
+
+publishPost.addEventListener("click", async function() {
+    const title = postTitle.value;
+    const body = postBody.value;
+    
+    if (title.length > 0 && body.length > 0) {
+
+        const result = await postCreateSocialpost(title, body);
+        console.log("awaited and complete");
+        console.table(result);
+        if (result.statusCode === 200) {
+            // Success
+            console.log("success");
+            currentFilter = null;
+            currentSearch = null;
+            refreshPosts();
+
+            postTitle.value = "";
+            postBody.value = "";
+        }
+    }
+});
+
+// Delete post:
+async function deletePost(id) {
+    if (id) {
+        const result = await deleteSocialPost(id);
+        if (result.statusCode === 200) {
+            refreshPosts();
+        }
+    }
+}
+window.deletePost = deletePost
+
+// Edit post:
+async function editPost(id) {
+    if (id) {
+        window.location.href = "/edit.html?id=" + id;
+    }
+}
+window.editPost = editPost

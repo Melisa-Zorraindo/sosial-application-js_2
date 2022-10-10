@@ -8,13 +8,22 @@ const API_BASE_URL = "https://nf-api.onrender.com";
 const API_AUTH_REGISTER = "/api/v1/social/auth/register";
 const API_AUTH_LOGIN = "/api/v1/social/auth/login";
 const API_SOCIAL_POSTS = "/api/v1/social/posts?sort=created&sortOrder=desc";
-const API_SOCIAL_POST = "/api/v1/social/posts/"
+const API_SOCIAL_POST = "/api/v1/social/posts/";
 
 const userKey = "noroff-user-key"
 
 const defaultHeaders = {
     "Content-Type": "application/json",
 };
+
+function getHeader() {
+    const headers = defaultHeaders
+    const token = load(userKey);
+    if (token) {
+        headers["Authorization"] = `Bearer ${token.accessToken}`
+    }
+    return headers;
+}
 
 /**
  * Safely stringify object
@@ -45,14 +54,13 @@ function isLoggedIn() {
  * @returns response object
  */
 async function noroffPOST(url, body) {
-
-    const data = stringify(body);
-    if (!data) { return; }
-
     try {
+        const data = stringify(body);
+        if (!data) { return; }
+
         const request = {
             method: "POST",
-            headers: defaultHeaders,
+            headers: getHeader(),
             body: data,
         };
         const apiResponse = await fetch(API_BASE_URL + url, request);
@@ -63,25 +71,50 @@ async function noroffPOST(url, body) {
     return null;
 }
 
-async function noroffGET(url) {
-    const headers = defaultHeaders
-    const token = load(userKey);
-    console.log(token.accessToken);
-    if (token) {
-        headers["Authorization"] = `Bearer ${token.accessToken}`
+async function noroffDELETE(url, id) {
+    try {
+        const request = {
+            method: "DELETE",
+            headers: getHeader()
+        };
+        const apiResponse = await fetch(API_BASE_URL + url + id, request);
+        return apiResponse;
+    } catch (error) {
+        console.error(error);
     }
+    return null;
+}
+
+async function noroffGET(url) {
+    
     try {
         const request = {
             method: "GET",
-            headers: headers
+            headers: getHeader()
         };
-        console.table(request);
         const apiResponse = await fetch(API_BASE_URL + url, request);
         return apiResponse
     } catch (error) {
         console.error(error);
     }
     return null;
+}
+
+async function noroffUpdate(url, id, body) {
+    try {
+        const data = stringify(body);
+        if (!data) { return; }
+
+        const request = {
+            method: "PUT",
+            headers: getHeader(),
+            body: data
+        };
+        const apiResponse = await fetch(API_BASE_URL + url + id, request);
+        return apiResponse
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 /**
@@ -176,10 +209,77 @@ async function getSocialPost(id) {
     };
 }
 
+async function postCreateSocialpost(title, body, tags = [], mediaUrl) {
+    if (!title || !body) {
+        return null;
+    }
+    if (typeof(title) === "string" &&
+        typeof(body) === "string") {
+
+        const postBody = {
+            "title": title,
+            "body": body,
+            "tags": tags,
+            "media": mediaUrl
+        };
+        let apiResponse = await noroffPOST(API_SOCIAL_POST, postBody);
+        const json = await apiResponse.json();
+        return {
+            json: json,
+            statusCode: apiResponse.status
+        };
+    }
+    return null;
+}
+
+async function deleteSocialPost(id) { 
+    if (!id) {
+        return null;
+    }
+    if (typeof(id) === "number") {
+        let apiResponse = await noroffDELETE(API_SOCIAL_POST, id);
+        const json = await apiResponse.json();
+        console.log(apiResponse.status);
+        return {
+            json: json,
+            statusCode: apiResponse.status
+        };
+    }
+    return null;
+}
+
+async function putUpdateSocialPost(id, title, body, tags = [], mediaUrl) {
+    if (!title || !body || !id) {
+        return null;
+    }
+    if (typeof(id) === "string" && 
+        typeof(title) === "string" &&
+        typeof(body) === "string") {
+
+        console.log("update");
+        const postBody = {
+            "title": title,
+            "body": body,
+            "tags": tags,
+            "media": mediaUrl
+        };
+        let apiResponse = await noroffUpdate(API_SOCIAL_POST, id, postBody);
+        const json = await apiResponse.json();
+        return {
+            json: json,
+            statusCode: apiResponse.status
+        };
+    }
+    return null;
+}
+
 export {
     postAuthLogin,
     postAuthRegister,
     getSocialPosts,
     getSocialPost,
+    postCreateSocialpost,
+    deleteSocialPost,
+    putUpdateSocialPost,
     isLoggedIn
 };

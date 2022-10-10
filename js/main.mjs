@@ -1,6 +1,4 @@
-
-
 // General:
 function checkIfLoggedIn() {
-    return isLoggedIn();
+  return isLoggedIn();
 }
