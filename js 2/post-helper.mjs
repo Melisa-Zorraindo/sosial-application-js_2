@@ -1,10 +1,4 @@
-import { getProfileName } from "./noroff-api-helper.mjs";
-
 function makePost(post) {
-
-  const isYourPost = post.author.name === getProfileName() ? "" : "hidden";
-  const postDate = new Date(post.updated);
-
   const html = `<div class="postContainer">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
@@ -17,29 +11,29 @@ function makePost(post) {
                                 width="150" 
                                 height="150"/>
                             <div>
-                            <h4 class="mb-1">${post.author.name}</h4>
+                            <h2 class="mb-1">${post.author.name}</h2>
                             <h3 class="mb-1">${post.title}</h3>
                                 <div class="d-flex align-items-center mb-3">
                                 <p class="mb-0">${
                                   post._count.reactions
                                 } Likes</p>
                                 </div>
+                                <div>
+                                <p class="mb-0">${post.updated} Date</p>
+                                </div>
                                 ${post.body}
                                 </p>
-                                <textarea class="mt-4 form-control" placeholder="Add a comment..."></textarea>          
-                                <div>
-                                <p class="mb-0 mt-2">${postDate.toLocaleString()}</p>
-                                </div>        
+                                <textarea class="mt-4 form-control" placeholder="Add a comment..."></textarea>                  
                             <div>
                                 <button type="button" class="btn btn-primary btn-sm mt-3">
                                 Comment
                                 </button>
-                                <button ${isYourPost} type="button" class="btn btn-primary btn-sm mt-3" onclick="editPost(${
+                                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="editPost(${
                                   post.id
                                 })">
                                 Edit
                                 </button>
-                                <button ${isYourPost} type="button" class="btn btn-primary btn-sm mt-3" onclick="deletePost(${
+                                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="deletePost(${
                                   post.id
                                 })">
                                 Delete

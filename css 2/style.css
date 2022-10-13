@@ -10798,7 +10798,6 @@ a {
 
 .seperator-line {
   border-top: 1px solid #e6e3e3;
-  margin-top: 80px;
 }
 
 /* images */
@@ -10839,4 +10838,11 @@ a:hover {
   background-color: #e7044c;
 }
 
-/*# sourceMappingURL=styles.css.map */
+@media (min-width: 769px) {
+  .main-background {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

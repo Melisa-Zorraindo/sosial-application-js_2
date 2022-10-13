@@ -10,7 +10,6 @@ const API_AUTH_LOGIN = "/api/v1/social/auth/login";
 const API_SOCIAL_POSTS =
   "/api/v1/social/posts?sort=created&sortOrder=desc&_author=true&_comments=true&_reactions=true";
 const API_SOCIAL_POST = "/api/v1/social/posts/";
-const API_AUTHOR_COMMENTS_REACTIONS = "?_author=true&_comments=true&_reactions=true";
 
 const userKey = "noroff-user-key";
 
@@ -45,22 +44,8 @@ function isLoggedIn() {
   const res = load(userKey);
   console.log("load:");
   console.table(res);
-  if (res) {
-    const token = res["accessToken"];
-    return token !== null;
-  }
-  return null;
-}
-
-function getProfileName() {
-  const res = load(userKey);
-  console.log("load:");
-  console.table(res);
-  if (res) {
-    const name = res["name"];
-    return name;
-  }
-  return null;
+  const token = res["accessToken"];
+  return token !== null;
 }
 
 /**
@@ -218,7 +203,7 @@ async function getSocialPosts() {
 }
 
 async function getSocialPost(id) {
-  const apiResponse = await noroffGET(API_SOCIAL_POST + id + API_AUTHOR_COMMENTS_REACTIONS);
+  const apiResponse = await noroffGET(API_SOCIAL_POST + id);
   const json = await apiResponse.json();
   return {
     json: json,
@@ -298,5 +283,4 @@ export {
   deleteSocialPost,
   putUpdateSocialPost,
   isLoggedIn,
-  getProfileName
 };

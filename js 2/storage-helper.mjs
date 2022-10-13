@@ -15,19 +15,10 @@ function save(key, value) {
  * @returns {any} stored object data
  */
 function load(key) {
-  const value = localStorage.getItem(key);
-  if (value) {
-    try {
-      const obj = JSON.parse(value)
-      console.log("Getting:");
-      console.table(obj);
-      return obj;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  }
-  return null;
+  const value = JSON.parse(localStorage.getItem(key));
+  console.log("Getting:");
+  console.table(value);
+  return value;
 }
 
 /**
