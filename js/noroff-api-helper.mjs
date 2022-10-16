@@ -10,7 +10,8 @@ const API_AUTH_LOGIN = "/api/v1/social/auth/login";
 const API_SOCIAL_POSTS =
   "/api/v1/social/posts?sort=created&sortOrder=desc&_author=true&_comments=true&_reactions=true";
 const API_SOCIAL_POST = "/api/v1/social/posts/";
-const API_AUTHOR_COMMENTS_REACTIONS = "?_author=true&_comments=true&_reactions=true";
+const API_AUTHOR_COMMENTS_REACTIONS =
+  "?_author=true&_comments=true&_reactions=true";
 
 const userKey = "noroff-user-key";
 
@@ -35,16 +36,12 @@ function getHeader() {
 function stringify(data) {
   try {
     return JSON.stringify(data);
-  } catch {
-    console.error(error);
-  }
+  } catch {}
   return null;
 }
 
 function isLoggedIn() {
   const res = load(userKey);
-  console.log("load:");
-  console.table(res);
   if (res) {
     const token = res["accessToken"];
     return token !== null;
@@ -54,8 +51,6 @@ function isLoggedIn() {
 
 function getProfileName() {
   const res = load(userKey);
-  console.log("load:");
-  console.table(res);
   if (res) {
     const name = res["name"];
     return name;
@@ -83,9 +78,7 @@ async function noroffPOST(url, body) {
     };
     const apiResponse = await fetch(API_BASE_URL + url, request);
     return apiResponse;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
   return null;
 }
 
@@ -97,9 +90,7 @@ async function noroffDELETE(url, id) {
     };
     const apiResponse = await fetch(API_BASE_URL + url + id, request);
     return apiResponse;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
   return null;
 }
 
@@ -111,9 +102,7 @@ async function noroffGET(url) {
     };
     const apiResponse = await fetch(API_BASE_URL + url, request);
     return apiResponse;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
   return null;
 }
 
@@ -131,9 +120,7 @@ async function noroffUpdate(url, id, body) {
     };
     const apiResponse = await fetch(API_BASE_URL + url + id, request);
     return apiResponse;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
 
 /**
@@ -188,7 +175,6 @@ async function postAuthLogin(email, password) {
       password: password,
     };
     let apiResponse = await noroffPOST(API_AUTH_LOGIN, body);
-    console.table(apiResponse);
     const json = await apiResponse.json();
 
     if (apiResponse.status === 200) {
@@ -218,7 +204,9 @@ async function getSocialPosts() {
 }
 
 async function getSocialPost(id) {
-  const apiResponse = await noroffGET(API_SOCIAL_POST + id + API_AUTHOR_COMMENTS_REACTIONS);
+  const apiResponse = await noroffGET(
+    API_SOCIAL_POST + id + API_AUTHOR_COMMENTS_REACTIONS
+  );
   const json = await apiResponse.json();
   return {
     json: json,
@@ -254,7 +242,6 @@ async function deleteSocialPost(id) {
   if (typeof id === "number") {
     let apiResponse = await noroffDELETE(API_SOCIAL_POST, id);
     const json = await apiResponse.json();
-    console.log(apiResponse.status);
     return {
       json: json,
       statusCode: apiResponse.status,
@@ -272,7 +259,6 @@ async function putUpdateSocialPost(id, title, body, tags = [], mediaUrl) {
     typeof title === "string" &&
     typeof body === "string"
   ) {
-    console.log("update");
     const postBody = {
       title: title,
       body: body,
@@ -298,5 +284,5 @@ export {
   deleteSocialPost,
   putUpdateSocialPost,
   isLoggedIn,
-  getProfileName
+  getProfileName,
 };

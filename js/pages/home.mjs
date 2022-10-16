@@ -18,11 +18,9 @@ const container = document.getElementById("postsContainer");
 async function getAllPosts(filter, search) {
   const result = await getSocialPosts();
   if (result.statusCode === 200) {
-    console.table(result.json);
     insertPosts(result.json, filter, search);
     return;
   }
-  console.error("Something went wrong");
 }
 
 function insertPosts(posts, filter, search) {
@@ -51,7 +49,6 @@ function insertPosts(posts, filter, search) {
     .map((element) => {
       return makePost(element);
     });
-  console.log(filteredPosts.length);
   container.innerHTML += filteredPosts;
 }
 
@@ -112,11 +109,9 @@ publishPost.addEventListener("click", async function () {
 
   if (title.length > 0 && body.length > 0) {
     const result = await postCreateSocialpost(title, body);
-    console.log("awaited and complete");
-    console.table(result);
     if (result.statusCode === 200) {
       // Success
-      console.log("success");
+
       currentFilter = null;
       currentSearch = null;
       refreshPosts();

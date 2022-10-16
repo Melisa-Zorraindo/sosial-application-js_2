@@ -23,11 +23,8 @@ publishPost.addEventListener("click", async function () {
   const title = postTitle.value;
   const body = postBody.value;
   if (title && body && id) {
-    console.log(title + body + id);
     const result = await putUpdateSocialPost(id, title, body);
-    console.log(result.statusCode);
     if (result.statusCode === 200) {
-      console.log(window.location.href);
       window.location.href = "/post.html?id=" + id;
     }
   }
