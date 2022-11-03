@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>SocialMeets</title>
   </head>
   <body>
     <div class="container py-5">
@@ -23,25 +23,20 @@
                 <div class="p-md-5 mx-md-4">
                   <div class="text-center">
                     <h4 class="mb-5">SosialMeets</h4>
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
-                      class="rounded shadow-lg"
-                      style="width: 185px"
-                      alt="logo"
-                    />
                   </div>
-
                   <!-- -->
-                  <form action="/home.html">
+                  <form id="loginForm">
                     <div class="container-md custom-w">
                       <div class="input-group my-3">
                         <input
-                          type="text"
-                          class="form-control py-3"
                           id="username"
-                          placeholder="username"
-                          aria-label="username"
+                          aria-label="Only @(stud.)noroff.no domains are allowed to login."
+                          class="form-control py-3"
+                          type="email"
+                          name="email"
                           required
+                          pattern="^[\w\-.]+@(stud.)?noroff.no$"
+                          placeholder="email (@noroff.no)"
                         />
                       </div>
                       <div class="input-group my-1">
@@ -51,22 +46,18 @@
                           id="password"
                           placeholder="password"
                           aria-label="password"
+                          name="password"
                           required
+                          minlength="8"
                         />
                       </div>
-                      <div class="d-sm-flex justify-content-between">
-                        <div>
-                          <input type="checkbox" name="" id="remember" />
-                          <label for="remember">Remember me</label>
-                        </div>
-                        <a href="#">Forgot your password?</a>
-                      </div>
                       <div class="d-grid my-5">
-                        <button type="submit" class="btn btn-primary">
+                        <button id="sign-in-button" class="btn btn-primary">
                           log in
                         </button>
                         <p class="text-center py-1">
-                          Not registered yet? <a href="#">Sign up</a>
+                          Not registered yet?
+                          <a href="Registration.html">Sign up</a>
                         </p>
                       </div>
                     </div>
@@ -92,6 +83,7 @@
         </div>
       </div>
     </div>
+    <script type="module" src="/js/pages/login.mjs"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
   </body>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </html>

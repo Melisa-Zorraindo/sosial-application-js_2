@@ -1,5 +1,10 @@
 # ca-framework
 
+## LINK TO TRELLO
+
+https://trello.com/b/LfMK2tdb/sosial-application-js2
+
+
 Goal
 To apply knowledge of Bootstrap and SASS to build a responsive front end for a social media application.
 
